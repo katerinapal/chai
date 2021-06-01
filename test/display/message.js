@@ -1,4 +1,5 @@
-var chai = require('../..')
+import imp_indexjs from "../..";
+var chai = imp_indexjs
   , expect = chai.expect
   , should = chai.should();
 

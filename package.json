@@ -1,62 +1,84 @@
 {
-  "author": "Jake Luer <jake@alogicalparadox.com>",
-  "name": "chai",
-  "description": "BDD/TDD assertion library for node.js and the browser. Test framework agnostic.",
-  "keywords": [
-    "test",
-    "assertion",
-    "assert",
-    "testing",
-    "chai"
-  ],
-  "homepage": "http://chaijs.com",
-  "license": "MIT",
-  "contributors": [
-    "Jake Luer <jake@alogicalparadox.com>",
-    "Domenic Denicola <domenic@domenicdenicola.com> (http://domenicdenicola.com)",
-    "Veselin Todorov <hi@vesln.com>",
-    "John Firebaugh <john.firebaugh@gmail.com>"
-  ],
-  "version": "4.3.3",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/chaijs/chai"
-  },
-  "bugs": {
-    "url": "https://github.com/chaijs/chai/issues"
-  },
-  "main": "./index",
-  "exports": {
-    ".": {
-      "require": "./index.js",
-      "import": "./index.mjs"
+    "author": "Jake Luer <jake@alogicalparadox.com>",
+    "name": "chai",
+    "description": "BDD/TDD assertion library for node.js and the browser. Test framework agnostic.",
+    "keywords": [
+        "test",
+        "assertion",
+        "assert",
+        "testing",
+        "chai"
+    ],
+    "homepage": "http://chaijs.com",
+    "license": "MIT",
+    "contributors": [
+        "Jake Luer <jake@alogicalparadox.com>",
+        "Domenic Denicola <domenic@domenicdenicola.com> (http://domenicdenicola.com)",
+        "Veselin Todorov <hi@vesln.com>",
+        "John Firebaugh <john.firebaugh@gmail.com>"
+    ],
+    "version": "4.3.3",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/chaijs/chai"
     },
-    "./": "./"
-  },
-  "scripts": {
-    "test": "make test"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "dependencies": {
-    "assertion-error": "^1.1.0",
-    "check-error": "^1.0.2",
-    "deep-eql": "^3.0.1",
-    "get-func-name": "^2.0.0",
-    "pathval": "^1.1.1",
-    "type-detect": "^4.0.5"
-  },
-  "devDependencies": {
-    "browserify": "^16.2.3",
-    "bump-cli": "^1.1.3",
-    "codecov": "^3.0.0",
-    "istanbul": "^0.4.3",
-    "karma": "^6.1.1",
-    "karma-chrome-launcher": "^2.2.0",
-    "karma-firefox-launcher": "^1.0.0",
-    "karma-mocha": "^2.0.1",
-    "karma-sauce-launcher": "^1.2.0",
-    "mocha": "^7.1.2"
-  }
+    "bugs": {
+        "url": "https://github.com/chaijs/chai/issues"
+    },
+    "main": "./index",
+    "exports": {
+        ".": {
+            "require": "./index.js",
+            "import": "./index.mjs"
+        },
+        "./": "./"
+    },
+    "scripts": {
+        "test": "make test",
+        "compile-libchaiutils": "babel lib\\chai\\utils --out-dir lib\\chai\\utils --require babel-polyfill --presets env",
+        "compile-test": "babel test --out-dir test --require babel-polyfill --presets env",
+        "compile-testdisplay": "babel test\\display --out-dir test\\display --require babel-polyfill --presets env",
+        "compile-libchaiinterface": "babel lib\\chai\\interface --out-dir lib\\chai\\interface --require babel-polyfill --presets env",
+        "compile-libchai": "babel lib\\chai --out-dir lib\\chai --require babel-polyfill --presets env",
+        "compile-libchaicore": "babel lib\\chai\\core --out-dir lib\\chai\\core --require babel-polyfill --presets env",
+        "compile-testbootstrap": "babel test\\bootstrap --out-dir test\\bootstrap --require babel-polyfill --presets env",
+        "compile-lib": "babel lib --out-dir lib --require babel-polyfill --presets env",
+        "compile-registershouldjs": "babel register-should.js -o register-should.js --require babel-polyfill --presets env",
+        "compile-indexjs": "babel index.js -o index.js --require babel-polyfill --presets env",
+        "compile-saucebrowsersjs": "babel sauce.browsers.js -o sauce.browsers.js --require babel-polyfill --presets env",
+        "compile-registerexpectjs": "babel register-expect.js -o register-expect.js --require babel-polyfill --presets env",
+        "compile-registerassertjs": "babel register-assert.js -o register-assert.js --require babel-polyfill --presets env",
+        "compile-1_script": "npm run compile-libchaiutils && npm run compile-test && npm run compile-testdisplay && npm run compile-libchaiinterface && npm run compile-libchai && npm run compile-libchaicore && npm run compile-testbootstrap && npm run compile-lib && npm run compile-registershouldjs && npm run compile-indexjs && npm run compile-saucebrowsersjs && npm run compile-registerexpectjs && npm run compile-registerassertjs",
+        "compile": "npm run compile-1_script"
+    },
+    "engines": {
+        "node": ">=4"
+    },
+    "dependencies": {
+        "assertion-error": "^1.1.0",
+        "check-error": "^1.0.2",
+        "deep-eql": "^3.0.1",
+        "get-func-name": "^2.0.0",
+        "pathval": "^1.1.1",
+        "type-detect": "^4.0.5"
+    },
+    "devDependencies": {
+        "browserify": "^16.2.3",
+        "bump-cli": "^1.1.3",
+        "codecov": "^3.0.0",
+        "istanbul": "^0.4.3",
+        "karma": "^6.1.1",
+        "karma-chrome-launcher": "^2.2.0",
+        "karma-firefox-launcher": "^1.0.0",
+        "karma-mocha": "^2.0.1",
+        "karma-sauce-launcher": "^1.2.0",
+        "mocha": "^7.1.2",
+        "babel-cli": "latest",
+        "babel-core": "latest",
+        "babel-plugin-add-module-exports": "latest",
+        "babel-plugin-transform-es2015-modules-commonjs": "latest",
+        "babel-polyfill": "latest",
+        "babel-plugin-transform-object-rest-spread": "latest",
+        "babel-preset-env": "latest"
+    }
 }

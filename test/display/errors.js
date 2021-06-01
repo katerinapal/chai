@@ -1,5 +1,6 @@
+import imp_indexjs from "../..";
 if (!chai)
-  var chai = require('../..');
+  var chai = imp_indexjs;
 
 var expect = chai.expect;
 
