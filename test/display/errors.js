@@ -1,5 +1,6 @@
+import mod_indexjs from "../..";
 if (!chai)
-  var chai = require('../..');
+  var chai = mod_indexjs;
 
 var expect = chai.expect;
 

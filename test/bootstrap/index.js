@@ -1,7 +1,10 @@
+import mod_indexjs from "../..";
+export var globalErr;
+export var globalChai;
 if (typeof window === 'object') {
   global = window;
 } else {
-  global.chai = require('../..');
+  globalChai = mod_indexjs;
 }
 
 var isStackSupported = false;
@@ -31,7 +34,7 @@ if (typeof Error.captureStackTrace !== 'undefined') {
  * @param {Boolean} skipStackTest if truthy, don't validate stack trace
  */
 
-global.err = function globalErr (fn, val, skipStackTest) {
+globalErr = function globalErr (fn, val, skipStackTest) {
   if (chai.util.type(fn) !== 'function')
     throw new chai.AssertionError('Invalid fn');
 
@@ -61,3 +64,11 @@ global.err = function globalErr (fn, val, skipStackTest) {
 
   throw new chai.AssertionError('Expected an error');
 };
+
+export function setGlobalChai(value) {
+  globalChai = value;
+}
+
+export function setGlobalErr(value) {
+  globalErr = value;
+}

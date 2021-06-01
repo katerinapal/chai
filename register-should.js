@@ -1,1 +1,7 @@
-global.should = require('./').should();
+import mod_indexjs from "./";
+export var globalShould;
+globalShould = mod_indexjs.should();
+
+export function setGlobalShould(value) {
+  globalShould = value;
+}
